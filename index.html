@@ -1,0 +1,2438 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-measure.css">
+        <style>
+        html, body, #map {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet-svg-shape-markers.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet.wms.js"></script>
+        <script src="js/leaflet-measure.js"></script>
+        <script src="data/Aizsargjamiebiotopi_3.js"></script>
+        <script src="data/Aizsargjamakokadikokateritorija_4.js"></script>
+        <script src="data/Aizsargjamiekoki_5.js"></script>
+        <script src="data/Suguatradnes_6.js"></script>
+        <script src="data/Suguatradnes_7.js"></script>
+        <script src="data/Sugunovrojumi_8.js"></script>
+        <script src="data/ADTAdamovasezersrobea_9.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[56.54652298621663,27.357712802102174],[56.589934648582044,27.438302200671597]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
+        var measureControl = new L.Control.Measure({
+            position: 'topleft',
+            primaryLengthUnit: 'meters',
+            secondaryLengthUnit: 'kilometers',
+            primaryAreaUnit: 'sqmeters',
+            secondaryAreaUnit: 'hectares'
+        });
+        measureControl.addTo(map);
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .innerHTML = '';
+        document.getElementsByClassName('leaflet-control-measure-toggle')[0]
+        .className += ' fas fa-ruler';
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        map.createPane('pane_TopogrfiskkarteM110000arreljefanojumu_0');
+        map.getPane('pane_TopogrfiskkarteM110000arreljefanojumu_0').style.zIndex = 400;
+        var layer_TopogrfiskkarteM110000arreljefanojumu_0 = L.WMS.layer("http://lvmgeoserver.lvm.lv/geoserver/ows", "public:Topo10DTM", {
+            pane: 'pane_TopogrfiskkarteM110000arreljefanojumu_0',
+            format: 'image/png',
+            uppercase: true,
+            transparent: true,
+            continuousWorld : true,
+            tiled: true,
+            info_format: 'text/html',
+            opacity: 1,
+            identify: false,
+            attribution: '',
+        });
+        map.addLayer(layer_TopogrfiskkarteM110000arreljefanojumu_0);
+        map.createPane('pane_Digitlsreljefamodelis_1');
+        map.getPane('pane_Digitlsreljefamodelis_1').style.zIndex = 401;
+        var layer_Digitlsreljefamodelis_1 = L.WMS.layer("http://lvmgeoserver.lvm.lv/geoserver/ows", "public:ZemeLKS", {
+            pane: 'pane_Digitlsreljefamodelis_1',
+            format: 'image/png',
+            uppercase: true,
+            transparent: true,
+            continuousWorld : true,
+            tiled: true,
+            info_format: 'text/html',
+            opacity: 0,
+            identify: false,
+            attribution: '',
+        });
+        map.addLayer(layer_Digitlsreljefamodelis_1);
+        map.createPane('pane_Ortofotokarte_2');
+        map.getPane('pane_Ortofotokarte_2').style.zIndex = 402;
+        var layer_Ortofotokarte_2 = L.WMS.layer("http://lvmgeoserver.lvm.lv/geoserver/ows", "public:Orto_LKS", {
+            pane: 'pane_Ortofotokarte_2',
+            format: 'image/png',
+            uppercase: true,
+            transparent: true,
+            continuousWorld : true,
+            tiled: true,
+            info_format: 'text/html',
+            opacity: 1,
+            identify: false,
+            attribution: '',
+        });
+        map.addLayer(layer_Ortofotokarte_2);
+        function pop_Aizsargjamiebiotopi_3(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">OBJECTID</th>\
+                        <td>' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CODE_EC</th>\
+                        <td>' + (feature.properties['CODE_EC'] !== null ? autolinker.link(feature.properties['CODE_EC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NAME_EC</th>\
+                        <td>' + (feature.properties['NAME_EC'] !== null ? autolinker.link(feature.properties['NAME_EC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">VARIANT_EC</th>\
+                        <td>' + (feature.properties['VARIANT_EC'] !== null ? autolinker.link(feature.properties['VARIANT_EC'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">OBS_DATE</th>\
+                        <td>' + (feature.properties['OBS_DATE'] !== null ? autolinker.link(feature.properties['OBS_DATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">OBSERVER</th>\
+                        <td>' + (feature.properties['OBSERVER'] !== null ? autolinker.link(feature.properties['OBSERVER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NOTES</th>\
+                        <td>' + (feature.properties['NOTES'] !== null ? autolinker.link(feature.properties['NOTES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">INT_LINKS</th>\
+                        <td>' + (feature.properties['INT_LINKS'] !== null ? autolinker.link(feature.properties['INT_LINKS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">REC_SOURCE</th>\
+                        <td>' + (feature.properties['REC_SOURCE'] !== null ? autolinker.link(feature.properties['REC_SOURCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">REC_EVALDESCR</th>\
+                        <td>' + (feature.properties['REC_EVALDESCR'] !== null ? autolinker.link(feature.properties['REC_EVALDESCR'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">FORM_NUMBER</th>\
+                        <td>' + (feature.properties['FORM_NUMBER'] !== null ? autolinker.link(feature.properties['FORM_NUMBER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">BVZ_Conclusion</th>\
+                        <td>' + (feature.properties['BVZ_Conclusion'] !== null ? autolinker.link(feature.properties['BVZ_Conclusion'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Klase</th>\
+                        <td>' + (feature.properties['Klase'] !== null ? autolinker.link(feature.properties['Klase'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">POLYGON_NUMBER</th>\
+                        <td>' + (feature.properties['POLYGON_NUMBER'] !== null ? autolinker.link(feature.properties['POLYGON_NUMBER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Aizsargjamiebiotopi_3_0(feature) {
+            switch(String(feature.properties['q2wHide_symbology'])) {
+                case 'Eitrofi ezeri ar iegrimušo ūdensaugu un peldaugu augāju (3150)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(57,134,186,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Sausi zālāji kaļķainās augsnēs (6210)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(252,255,136,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Sugām bagātas ganības un ganītas pļavas (6270*)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(228,207,99,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Palieņu zālāji (6450)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(187,234,112,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Mēreni mitras pļavas (6510)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(149,188,90,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Degradēti augstie purvi, kuros iespējama vai noris dabiskā atjaunošanās (7120)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(200,152,113,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Pārejas purvi un slīkšņas (7140)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(160,125,38,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Minerālvielām bagāti avoti un avotu purvi (7160)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(107,82,51,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Lakstaugiem bagāti egļu meži (9050)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,255,176,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Nogāžu un gravu meži (9180*)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(143,217,143,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Ozolu meži (ozolu, liepu un skābaržu meži) (9160)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,153,0,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Purvaini meži (91D0*)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(100,125,38,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Staignāju meži (9080*)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,204,175,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Veci jaukti platlapju meži (9020*)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,217,0,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+                case 'Veci vai dabiski boreāli meži (9010*)':
+                    return {
+                pane: 'pane_Aizsargjamiebiotopi_3',
+                opacity: 1,
+                color: 'rgba(168,168,168,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(0,255,0,0.6588235294117647)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Aizsargjamiebiotopi_3');
+        map.getPane('pane_Aizsargjamiebiotopi_3').style.zIndex = 403;
+        map.getPane('pane_Aizsargjamiebiotopi_3').style['mix-blend-mode'] = 'normal';
+        var layer_Aizsargjamiebiotopi_3 = new L.geoJson(json_Aizsargjamiebiotopi_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Aizsargjamiebiotopi_3',
+            layerName: 'layer_Aizsargjamiebiotopi_3',
+            pane: 'pane_Aizsargjamiebiotopi_3',
+            onEachFeature: pop_Aizsargjamiebiotopi_3,
+            style: style_Aizsargjamiebiotopi_3_0,
+        });
+        bounds_group.addLayer(layer_Aizsargjamiebiotopi_3);
+        map.addLayer(layer_Aizsargjamiebiotopi_3);
+        function pop_Aizsargjamakokadikokateritorija_4(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">OBJECTID</th>\
+                        <td>' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">PLACE_NAME</th>\
+                        <td>' + (feature.properties['PLACE_NAME'] !== null ? autolinker.link(feature.properties['PLACE_NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPECIES_LV</th>\
+                        <td>' + (feature.properties['SPECIES_LV'] !== null ? autolinker.link(feature.properties['SPECIES_LV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPECIES_LATIN</th>\
+                        <td>' + (feature.properties['SPECIES_LATIN'] !== null ? autolinker.link(feature.properties['SPECIES_LATIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CIRCUMF_1_3</th>\
+                        <td>' + (feature.properties['CIRCUMF_1_3'] !== null ? autolinker.link(feature.properties['CIRCUMF_1_3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">HEIGHT</th>\
+                        <td>' + (feature.properties['HEIGHT'] !== null ? autolinker.link(feature.properties['HEIGHT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ATIS_DESCRIPTION</th>\
+                        <td>' + (feature.properties['ATIS_DESCRIPTION'] !== null ? autolinker.link(feature.properties['ATIS_DESCRIPTION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Aizsargjamakokadikokateritorija_4_0() {
+            return {
+                pane: 'pane_Aizsargjamakokadikokateritorija_4',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        function style_Aizsargjamakokadikokateritorija_4_1() {
+            return {
+                pane: 'pane_Aizsargjamakokadikokateritorija_4',
+                opacity: 1,
+                color: 'rgba(16,237,16,1.0)',
+                dashArray: '1,5',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 2.0, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Aizsargjamakokadikokateritorija_4');
+        map.getPane('pane_Aizsargjamakokadikokateritorija_4').style.zIndex = 404;
+        map.getPane('pane_Aizsargjamakokadikokateritorija_4').style['mix-blend-mode'] = 'normal';
+        var layer_Aizsargjamakokadikokateritorija_4 = new L.geoJson.multiStyle(json_Aizsargjamakokadikokateritorija_4, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Aizsargjamakokadikokateritorija_4',
+            layerName: 'layer_Aizsargjamakokadikokateritorija_4',
+            pane: 'pane_Aizsargjamakokadikokateritorija_4',
+            onEachFeature: pop_Aizsargjamakokadikokateritorija_4,
+            styles: [style_Aizsargjamakokadikokateritorija_4_0,style_Aizsargjamakokadikokateritorija_4_1,]
+        });
+        bounds_group.addLayer(layer_Aizsargjamakokadikokateritorija_4);
+        map.addLayer(layer_Aizsargjamakokadikokateritorija_4);
+        function pop_Aizsargjamiekoki_5(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">OBJECTID</th>\
+                        <td>' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CATEGORY</th>\
+                        <td>' + (feature.properties['CATEGORY'] !== null ? autolinker.link(feature.properties['CATEGORY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPECIES_LV</th>\
+                        <td>' + (feature.properties['SPECIES_LV'] !== null ? autolinker.link(feature.properties['SPECIES_LV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">GENUS_LV</th>\
+                        <td>' + (feature.properties['GENUS_LV'] !== null ? autolinker.link(feature.properties['GENUS_LV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">GENUS_LATI</th>\
+                        <td>' + (feature.properties['GENUS_LATI'] !== null ? autolinker.link(feature.properties['GENUS_LATI'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPECIES_LA</th>\
+                        <td>' + (feature.properties['SPECIES_LA'] !== null ? autolinker.link(feature.properties['SPECIES_LA'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NAME</th>\
+                        <td>' + (feature.properties['NAME'] !== null ? autolinker.link(feature.properties['NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CANOPY_RAD</th>\
+                        <td>' + (feature.properties['CANOPY_RAD'] !== null ? autolinker.link(feature.properties['CANOPY_RAD'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">HEALTH</th>\
+                        <td>' + (feature.properties['HEALTH'] !== null ? autolinker.link(feature.properties['HEALTH'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">HABITUS</th>\
+                        <td>' + (feature.properties['HABITUS'] !== null ? autolinker.link(feature.properties['HABITUS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">DAMAGES</th>\
+                        <td>' + (feature.properties['DAMAGES'] !== null ? autolinker.link(feature.properties['DAMAGES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">RISK_TYPE</th>\
+                        <td>' + (feature.properties['RISK_TYPE'] !== null ? autolinker.link(feature.properties['RISK_TYPE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">HEIGHT</th>\
+                        <td>' + (feature.properties['HEIGHT'] !== null ? autolinker.link(feature.properties['HEIGHT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CIRC_LAND1</th>\
+                        <td>' + (feature.properties['CIRC_LAND1'] !== null ? autolinker.link(feature.properties['CIRC_LAND1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CIRCUMF_1_</th>\
+                        <td>' + (feature.properties['CIRCUMF_1_'] !== null ? autolinker.link(feature.properties['CIRCUMF_1_'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Aizsargjamiekoki_5_0(feature) {
+            switch(String(feature.properties['CATEGORY'])) {
+                case '1':
+                    return {
+                pane: 'pane_Aizsargjamiekoki_5',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ozollapa_esosa.svg',
+            iconSize: [13.299999999999999, 13.299999999999999]
+        }),
+                interactive: true,
+            }
+                    break;
+                case '2':
+                    return {
+                pane: 'pane_Aizsargjamiekoki_5',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ozollapa_esosa.svg',
+            iconSize: [11.399999999999999, 11.399999999999999]
+        }),
+                interactive: true,
+            }
+                    break;
+                case '3':
+                    return {
+                pane: 'pane_Aizsargjamiekoki_5',
+        rotationAngle: 0.0,
+        rotationOrigin: 'center center',
+        icon: L.icon({
+            iconUrl: 'markers/ozollapa_planota.svg',
+            iconSize: [11.399999999999999, 11.399999999999999]
+        }),
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Aizsargjamiekoki_5');
+        map.getPane('pane_Aizsargjamiekoki_5').style.zIndex = 405;
+        map.getPane('pane_Aizsargjamiekoki_5').style['mix-blend-mode'] = 'normal';
+        var layer_Aizsargjamiekoki_5 = new L.geoJson(json_Aizsargjamiekoki_5, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Aizsargjamiekoki_5',
+            layerName: 'layer_Aizsargjamiekoki_5',
+            pane: 'pane_Aizsargjamiekoki_5',
+            onEachFeature: pop_Aizsargjamiekoki_5,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.marker(latlng, style_Aizsargjamiekoki_5_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Aizsargjamiekoki_5);
+        map.addLayer(layer_Aizsargjamiekoki_5);
+        function pop_Suguatradnes_6(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">OBJECTID</th>\
+                        <td>' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPOT_HOST</th>\
+                        <td>' + (feature.properties['SPOT_HOST'] !== null ? autolinker.link(feature.properties['SPOT_HOST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">HABITAT_GROUP</th>\
+                        <td>' + (feature.properties['HABITAT_GROUP'] !== null ? autolinker.link(feature.properties['HABITAT_GROUP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">HABITAT_MICRO</th>\
+                        <td>' + (feature.properties['HABITAT_MICRO'] !== null ? autolinker.link(feature.properties['HABITAT_MICRO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPOT_TYPE</th>\
+                        <td>' + (feature.properties['SPOT_TYPE'] !== null ? autolinker.link(feature.properties['SPOT_TYPE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPECIES_LV</th>\
+                        <td>' + (feature.properties['SPECIES_LV'] !== null ? autolinker.link(feature.properties['SPECIES_LV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">GENUS_LV</th>\
+                        <td>' + (feature.properties['GENUS_LV'] !== null ? autolinker.link(feature.properties['GENUS_LV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">GENUS_LATIN</th>\
+                        <td>' + (feature.properties['GENUS_LATIN'] !== null ? autolinker.link(feature.properties['GENUS_LATIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPECIES_LATIN</th>\
+                        <td>' + (feature.properties['SPECIES_LATIN'] !== null ? autolinker.link(feature.properties['SPECIES_LATIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">OBS_DATE</th>\
+                        <td>' + (feature.properties['OBS_DATE'] !== null ? autolinker.link(feature.properties['OBS_DATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">OBSERVER</th>\
+                        <td>' + (feature.properties['OBSERVER'] !== null ? autolinker.link(feature.properties['OBSERVER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">DESCRIPTION</th>\
+                        <td>' + (feature.properties['DESCRIPTION'] !== null ? autolinker.link(feature.properties['DESCRIPTION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ABUNDANCE</th>\
+                        <td>' + (feature.properties['ABUNDANCE'] !== null ? autolinker.link(feature.properties['ABUNDANCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ABUND_UNIT</th>\
+                        <td>' + (feature.properties['ABUND_UNIT'] !== null ? autolinker.link(feature.properties['ABUND_UNIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">MANAGEMENT</th>\
+                        <td>' + (feature.properties['MANAGEMENT'] !== null ? autolinker.link(feature.properties['MANAGEMENT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NOTES</th>\
+                        <td>' + (feature.properties['NOTES'] !== null ? autolinker.link(feature.properties['NOTES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">REC_SOURCE</th>\
+                        <td>' + (feature.properties['REC_SOURCE'] !== null ? autolinker.link(feature.properties['REC_SOURCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">POLYGON_NUMBER</th>\
+                        <td>' + (feature.properties['POLYGON_NUMBER'] !== null ? autolinker.link(feature.properties['POLYGON_NUMBER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">FORM_NUMBER</th>\
+                        <td>' + (feature.properties['FORM_NUMBER'] !== null ? autolinker.link(feature.properties['FORM_NUMBER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SHAPE_Length</th>\
+                        <td>' + (feature.properties['SHAPE_Length'] !== null ? autolinker.link(feature.properties['SHAPE_Length'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SHAPE_Area</th>\
+                        <td>' + (feature.properties['SHAPE_Area'] !== null ? autolinker.link(feature.properties['SHAPE_Area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+        function style_Suguatradnes_6_0(feature) {
+            var context = {
+                feature: feature,
+                variables: {}
+            };
+            // Start of if blocks and style check logic
+            if (exp_Suguatradnes_6rule0_eval_expression(context)) {
+                  return {
+                pane: 'pane_Suguatradnes_6',
+                opacity: 1,
+                color: 'rgba(121,204,27,1.0)',
+                dashArray: '10,5',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(235,14,224,0.0)',
+                interactive: true,
+            };
+                }
+                else if (exp_Suguatradnes_6rule1_eval_expression(context)) {
+                  return {
+                pane: 'pane_Suguatradnes_6',
+                opacity: 1,
+                color: 'rgba(115,196,231,1.0)',
+                dashArray: '10,5',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,239,64,0.0)',
+                interactive: true,
+            };
+                }
+            else {
+                return {fill: false, stroke: false};
+            }
+        }
+        map.createPane('pane_Suguatradnes_6');
+        map.getPane('pane_Suguatradnes_6').style.zIndex = 406;
+        map.getPane('pane_Suguatradnes_6').style['mix-blend-mode'] = 'normal';
+        var layer_Suguatradnes_6 = new L.geoJson(json_Suguatradnes_6, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Suguatradnes_6',
+            layerName: 'layer_Suguatradnes_6',
+            pane: 'pane_Suguatradnes_6',
+            onEachFeature: pop_Suguatradnes_6,
+            style: style_Suguatradnes_6_0,
+        });
+        bounds_group.addLayer(layer_Suguatradnes_6);
+        map.addLayer(layer_Suguatradnes_6);
+        function pop_Suguatradnes_7(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">OBJECTID</th>\
+                        <td>' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPOT_HOST</th>\
+                        <td>' + (feature.properties['SPOT_HOST'] !== null ? autolinker.link(feature.properties['SPOT_HOST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">HABITAT_GROUP</th>\
+                        <td>' + (feature.properties['HABITAT_GROUP'] !== null ? autolinker.link(feature.properties['HABITAT_GROUP'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">HABITAT_MICRO</th>\
+                        <td>' + (feature.properties['HABITAT_MICRO'] !== null ? autolinker.link(feature.properties['HABITAT_MICRO'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPOT_TYPE</th>\
+                        <td>' + (feature.properties['SPOT_TYPE'] !== null ? autolinker.link(feature.properties['SPOT_TYPE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPECIES_LV</th>\
+                        <td>' + (feature.properties['SPECIES_LV'] !== null ? autolinker.link(feature.properties['SPECIES_LV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">GENUS_LV</th>\
+                        <td>' + (feature.properties['GENUS_LV'] !== null ? autolinker.link(feature.properties['GENUS_LV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">GENUS_LATIN</th>\
+                        <td>' + (feature.properties['GENUS_LATIN'] !== null ? autolinker.link(feature.properties['GENUS_LATIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPECIES_LATIN</th>\
+                        <td>' + (feature.properties['SPECIES_LATIN'] !== null ? autolinker.link(feature.properties['SPECIES_LATIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">OBS_DATE</th>\
+                        <td>' + (feature.properties['OBS_DATE'] !== null ? autolinker.link(feature.properties['OBS_DATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">OBSERVER</th>\
+                        <td>' + (feature.properties['OBSERVER'] !== null ? autolinker.link(feature.properties['OBSERVER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">DESCRIPTION</th>\
+                        <td>' + (feature.properties['DESCRIPTION'] !== null ? autolinker.link(feature.properties['DESCRIPTION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ABUNDANCE</th>\
+                        <td>' + (feature.properties['ABUNDANCE'] !== null ? autolinker.link(feature.properties['ABUNDANCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ABUND_UNIT</th>\
+                        <td>' + (feature.properties['ABUND_UNIT'] !== null ? autolinker.link(feature.properties['ABUND_UNIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">MANAGEMENT</th>\
+                        <td>' + (feature.properties['MANAGEMENT'] !== null ? autolinker.link(feature.properties['MANAGEMENT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NOTES</th>\
+                        <td>' + (feature.properties['NOTES'] !== null ? autolinker.link(feature.properties['NOTES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">REC_SOURCE</th>\
+                        <td>' + (feature.properties['REC_SOURCE'] !== null ? autolinker.link(feature.properties['REC_SOURCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">POLYGON_NUMBER</th>\
+                        <td>' + (feature.properties['POLYGON_NUMBER'] !== null ? autolinker.link(feature.properties['POLYGON_NUMBER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">FORM_NUMBER</th>\
+                        <td>' + (feature.properties['FORM_NUMBER'] !== null ? autolinker.link(feature.properties['FORM_NUMBER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Suguatradnes_7_0(feature) {
+            switch(String(feature.properties['q2wHide_symboligy'])) {
+                case 'īssetas nekera':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'triangle',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(71,239,223,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'tievā gludlape':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'triangle',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(110,135,237,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'gada staipeknis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'diamond',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,208,69,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'lielziedu uzpirkstīte':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'diamond',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(223,21,183,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'pundurbērzs':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'diamond',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(228,116,30,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'sīkā lēpe':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'diamond',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(121,204,27,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ūdens ērkšķuzāle':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'diamond',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(236,68,65,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'vālīšu staipeknis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'diamond',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(203,229,123,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'zemais bērzs':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'diamond',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(90,97,233,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'akmeņgrauzis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'triangle-down',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(40,130,240,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'baltais stārķis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+				shape: 'circle',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,255,255,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'grieze':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+				shape: 'circle',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(217,191,41,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'lielais ķīris':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+				shape: 'circle',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(233,161,37,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'tītiņš':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+				shape: 'circle',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(94,201,103,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'vidējais dzenis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+				shape: 'circle',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(70,236,117,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'upes zīriņš':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+				shape: 'circle',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(181,39,220,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'melnais stārķis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+				shape: 'circle',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(26,26,26,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'lielā gaura':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+				shape: 'circle',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(237,18,240,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'lielais dumpis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+				shape: 'circle',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(97,179,220,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'divkrāsainais sikspārnis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'square',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,79,107,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'dīķa naktssikspārnis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'square',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(124,148,219,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Eirāzijas ūdrs':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'square',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(75,50,200,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'Natūza sikspārnis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'square',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(212,74,157,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'pigmejsikspārnis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'square',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(151,222,115,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'rūsganais vakarsikspārnis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'square',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(124,64,228,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ziemeļu sikspārnis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'square',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(165,90,219,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ūdeņu naktssikspārnis':
+                    return {
+                pane: 'pane_Suguatradnes_7',
+                shape: 'square',
+                radius: 5.0,
+                opacity: 1,
+                color: 'rgba(77,77,77,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(95,214,155,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Suguatradnes_7');
+        map.getPane('pane_Suguatradnes_7').style.zIndex = 407;
+        map.getPane('pane_Suguatradnes_7').style['mix-blend-mode'] = 'normal';
+        var layer_Suguatradnes_7 = new L.geoJson(json_Suguatradnes_7, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Suguatradnes_7',
+            layerName: 'layer_Suguatradnes_7',
+            pane: 'pane_Suguatradnes_7',
+            onEachFeature: pop_Suguatradnes_7,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.shapeMarker(latlng, style_Suguatradnes_7_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Suguatradnes_7);
+        map.addLayer(layer_Suguatradnes_7);
+        function pop_Sugunovrojumi_8(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">OBJECTID</th>\
+                        <td>' + (feature.properties['OBJECTID'] !== null ? autolinker.link(feature.properties['OBJECTID'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPOT_HOST</th>\
+                        <td>' + (feature.properties['SPOT_HOST'] !== null ? autolinker.link(feature.properties['SPOT_HOST'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPOT_TYPE</th>\
+                        <td>' + (feature.properties['SPOT_TYPE'] !== null ? autolinker.link(feature.properties['SPOT_TYPE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPECIES_LV</th>\
+                        <td>' + (feature.properties['SPECIES_LV'] !== null ? autolinker.link(feature.properties['SPECIES_LV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">GENUS_LV</th>\
+                        <td>' + (feature.properties['GENUS_LV'] !== null ? autolinker.link(feature.properties['GENUS_LV'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">GENUS_LATIN</th>\
+                        <td>' + (feature.properties['GENUS_LATIN'] !== null ? autolinker.link(feature.properties['GENUS_LATIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">SPECIES_LATIN</th>\
+                        <td>' + (feature.properties['SPECIES_LATIN'] !== null ? autolinker.link(feature.properties['SPECIES_LATIN'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">OBS_DATE</th>\
+                        <td>' + (feature.properties['OBS_DATE'] !== null ? autolinker.link(feature.properties['OBS_DATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">OBSERVER</th>\
+                        <td>' + (feature.properties['OBSERVER'] !== null ? autolinker.link(feature.properties['OBSERVER'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">DESCRIPTION</th>\
+                        <td>' + (feature.properties['DESCRIPTION'] !== null ? autolinker.link(feature.properties['DESCRIPTION'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ABUNDANCE</th>\
+                        <td>' + (feature.properties['ABUNDANCE'] !== null ? autolinker.link(feature.properties['ABUNDANCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ABUND_UNIT</th>\
+                        <td>' + (feature.properties['ABUND_UNIT'] !== null ? autolinker.link(feature.properties['ABUND_UNIT'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">NOTES</th>\
+                        <td>' + (feature.properties['NOTES'] !== null ? autolinker.link(feature.properties['NOTES'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">REC_SOURCE</th>\
+                        <td>' + (feature.properties['REC_SOURCE'] !== null ? autolinker.link(feature.properties['REC_SOURCE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CREATE_DATE</th>\
+                        <td>' + (feature.properties['CREATE_DATE'] !== null ? autolinker.link(feature.properties['CREATE_DATE'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Sugunovrojumi_8_0(feature) {
+            switch(String(feature.properties['q2wHide_symbology'])) {
+                case 'zilganā baltsamtīte':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                shape: 'triangle',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,175,63,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'gada staipeknis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                shape: 'diamond',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(201,208,69,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'sīkā lēpe':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                shape: 'diamond',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(121,204,27,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ūdens ērkšķuzāle':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                shape: 'diamond',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(115,196,231,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'akmeņčakstīte':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(33,19,224,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ausainā pūce':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(210,121,114,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'baltais stārķis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(222,171,94,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'baltā cielava':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(231,133,97,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'bezdelīga':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(222,124,189,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'brūnspārnu ķauķis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(230,121,148,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'cekuldūkuris':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(33,200,81,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ceru ķauķis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(43,230,196,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'čuņčiņš':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(16,214,155,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'dadzītis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(124,202,59,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'dižknābis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(203,117,166,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'dižraibais dzenis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(127,57,239,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'dzeltenā stērste':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(187,209,40,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'dzērve':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(84,238,177,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'dziedātājstrazds':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(226,22,203,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'erickiņš':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(117,214,154,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'gaigala':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(229,117,228,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'garastīte':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(119,183,232,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'iedzeltenais ķauķis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(101,236,126,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'jūras ērglis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(83,178,207,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'kārklu ķauķis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,43,235,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ķīvīte':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(198,201,26,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'lauku cīrulis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(114,174,204,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'lauku zvirbulis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(234,87,92,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'lielais ķīris':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(52,76,230,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'lielā čakste':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(80,226,35,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'lielā gaura':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(237,18,240,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'lielā zīlīte':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(57,203,130,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'lukstu čakstīte':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(217,115,51,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'mazais svilpis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(13,86,221,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'mājas čurkste':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(173,56,202,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'mājas strazds':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(127,85,232,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'melnais mušķērājs':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(79,212,214,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'melnais stārķis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(51,51,51,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'melnā dzilna':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(228,72,127,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'melnā klija':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(238,141,121,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'meža pīle':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(100,228,109,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'niedru lija':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(219,199,106,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'pelēkā dzilna':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(83,52,239,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'pelēkā vārna':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(227,84,151,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'peļu klijāns':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(168,217,107,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'sarkanrīklīte':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(170,211,36,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'sila strazds':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(173,64,220,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'svīre':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(200,187,37,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'upes zīriņš':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(123,39,220,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'vālodze':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(79,113,216,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'vidējais dzenis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,0,0,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'zaļžubīte':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(148,211,21,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'ziemeļu gulbis':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(204,88,105,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'zilzīlīte':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(82,204,78,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'žagata':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(111,154,207,1.0)',
+                interactive: true,
+            }
+                    break;
+                case 'žubīte':
+                    return {
+                pane: 'pane_Sugunovrojumi_8',
+                radius: 4.0,
+                opacity: 1,
+                color: 'rgba(127,127,127,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1,
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(53,207,227,1.0)',
+                interactive: true,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_Sugunovrojumi_8');
+        map.getPane('pane_Sugunovrojumi_8').style.zIndex = 408;
+        map.getPane('pane_Sugunovrojumi_8').style['mix-blend-mode'] = 'normal';
+        var layer_Sugunovrojumi_8 = new L.geoJson(json_Sugunovrojumi_8, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Sugunovrojumi_8',
+            layerName: 'layer_Sugunovrojumi_8',
+            pane: 'pane_Sugunovrojumi_8',
+            onEachFeature: pop_Sugunovrojumi_8,
+            pointToLayer: function (feature, latlng) {
+                var context = {
+                    feature: feature,
+                    variables: {}
+                };
+                return L.circleMarker(latlng, style_Sugunovrojumi_8_0(feature));
+            },
+        });
+        bounds_group.addLayer(layer_Sugunovrojumi_8);
+        map.addLayer(layer_Sugunovrojumi_8);
+        function pop_ADTAdamovasezersrobea_9(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">Statuss</th>\
+                        <td>' + (feature.properties['STATUS'] !== null ? autolinker.link(feature.properties['STATUS'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ĪADT</th>\
+                        <td>' + (feature.properties['NAME'] !== null ? autolinker.link(feature.properties['NAME'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Kategorija</th>\
+                        <td>' + (feature.properties['CATEGORY'] !== null ? autolinker.link(feature.properties['CATEGORY'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_ADTAdamovasezersrobea_9_0(feature) {
+            switch(String(feature.properties['STATUS'])) {
+                case '1':
+                    return {
+                pane: 'pane_ADTAdamovasezersrobea_9',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0, 
+                fillOpacity: 0,
+                interactive: false,
+            }
+                    break;
+                case '3':
+                    return {
+                pane: 'pane_ADTAdamovasezersrobea_9',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0, 
+                fillOpacity: 0,
+                interactive: false,
+            }
+                    break;
+                case '8':
+                    return {
+                pane: 'pane_ADTAdamovasezersrobea_9',
+                opacity: 1,
+                color: 'rgba(255,255,255,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 4.0, 
+                fillOpacity: 0,
+                interactive: false,
+            }
+                    break;
+            }
+        }
+        function style_ADTAdamovasezersrobea_9_1(feature) {
+            switch(String(feature.properties['STATUS'])) {
+                case '1':
+                    return {
+                pane: 'pane_ADTAdamovasezersrobea_9',
+                opacity: 1,
+                color: 'rgba(213,0,213,1.0)',
+                dashArray: '10,5,1,5',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fillOpacity: 0,
+                interactive: false,
+            }
+                    break;
+                case '3':
+                    return {
+                pane: 'pane_ADTAdamovasezersrobea_9',
+                opacity: 1,
+                color: 'rgba(1,0,213,1.0)',
+                dashArray: '10,5,1,5',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fillOpacity: 0,
+                interactive: false,
+            }
+                    break;
+                case '8':
+                    return {
+                pane: 'pane_ADTAdamovasezersrobea_9',
+                opacity: 1,
+                color: 'rgba(231,113,72,1.0)',
+                dashArray: '10,5,1,5',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 3.0, 
+                fillOpacity: 0,
+                interactive: false,
+            }
+                    break;
+            }
+        }
+        map.createPane('pane_ADTAdamovasezersrobea_9');
+        map.getPane('pane_ADTAdamovasezersrobea_9').style.zIndex = 409;
+        map.getPane('pane_ADTAdamovasezersrobea_9').style['mix-blend-mode'] = 'normal';
+        var layer_ADTAdamovasezersrobea_9 = new L.geoJson.multiStyle(json_ADTAdamovasezersrobea_9, {
+            attribution: '',
+            interactive: false,
+            dataVar: 'json_ADTAdamovasezersrobea_9',
+            layerName: 'layer_ADTAdamovasezersrobea_9',
+            pane: 'pane_ADTAdamovasezersrobea_9',
+            onEachFeature: pop_ADTAdamovasezersrobea_9,
+            styles: [style_ADTAdamovasezersrobea_9_0,style_ADTAdamovasezersrobea_9_1,]
+        });
+        bounds_group.addLayer(layer_ADTAdamovasezersrobea_9);
+        map.addLayer(layer_ADTAdamovasezersrobea_9);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'ĪADT "Adamovas ezers" robeža<br /><table><tr><td style="text-align: center;"><img src="legend/ADTAdamovasezersrobea_9_Esošārobeža0.png" /></td><td>Esošā robeža</td></tr><tr><td style="text-align: center;"><img src="legend/ADTAdamovasezersrobea_9_Precizētārobeža1.png" /></td><td>Precizētā robeža</td></tr><tr><td style="text-align: center;"><img src="legend/ADTAdamovasezersrobea_9_Plānotārobeža2.png" /></td><td>Plānotā robeža</td></tr></table>': layer_ADTAdamovasezersrobea_9,'Sugu novērojumi*<br /><table><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_zilganābaltsamtīte0.png" /></td><td>zilganā baltsamtīte</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_gadastaipeknis1.png" /></td><td>gada staipeknis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_sīkālēpe2.png" /></td><td>sīkā lēpe</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_ūdensērkšķuzāle3.png" /></td><td>ūdens ērkšķuzāle</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_akmeņčakstīte4.png" /></td><td>akmeņčakstīte</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_ausaināpūce5.png" /></td><td>ausainā pūce</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_baltaisstārķis6.png" /></td><td>baltais stārķis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_baltācielava7.png" /></td><td>baltā cielava</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_bezdelīga8.png" /></td><td>bezdelīga</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_brūnspārnuķauķis9.png" /></td><td>brūnspārnu ķauķis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_cekuldūkuris10.png" /></td><td>cekuldūkuris</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_ceruķauķis11.png" /></td><td>ceru ķauķis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_čuņčiņš12.png" /></td><td>čuņčiņš</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_dadzītis13.png" /></td><td>dadzītis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_dižknābis14.png" /></td><td>dižknābis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_dižraibaisdzenis15.png" /></td><td>dižraibais dzenis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_dzeltenāstērste16.png" /></td><td>dzeltenā stērste</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_dzērve17.png" /></td><td>dzērve</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_dziedātājstrazds18.png" /></td><td>dziedātājstrazds</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_erickiņš19.png" /></td><td>erickiņš</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_gaigala20.png" /></td><td>gaigala</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_garastīte21.png" /></td><td>garastīte</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_iedzeltenaisķauķis22.png" /></td><td>iedzeltenais ķauķis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_jūrasērglis23.png" /></td><td>jūras ērglis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_kārkluķauķis24.png" /></td><td>kārklu ķauķis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_ķīvīte25.png" /></td><td>ķīvīte</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_laukucīrulis26.png" /></td><td>lauku cīrulis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_laukuzvirbulis27.png" /></td><td>lauku zvirbulis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_lielaisķīris28.png" /></td><td>lielais ķīris</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_lielāčakste29.png" /></td><td>lielā čakste</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_lielāgaura30.png" /></td><td>lielā gaura</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_lielāzīlīte31.png" /></td><td>lielā zīlīte</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_lukstučakstīte32.png" /></td><td>lukstu čakstīte</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_mazaissvilpis33.png" /></td><td>mazais svilpis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_mājasčurkste34.png" /></td><td>mājas čurkste</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_mājasstrazds35.png" /></td><td>mājas strazds</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_melnaismušķērājs36.png" /></td><td>melnais mušķērājs</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_melnaisstārķis37.png" /></td><td>melnais stārķis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_melnādzilna38.png" /></td><td>melnā dzilna</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_melnāklija39.png" /></td><td>melnā klija</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_mežapīle40.png" /></td><td>meža pīle</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_niedrulija41.png" /></td><td>niedru lija</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_pelēkādzilna42.png" /></td><td>pelēkā dzilna</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_pelēkāvārna43.png" /></td><td>pelēkā vārna</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_peļuklijāns44.png" /></td><td>peļu klijāns</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_sarkanrīklīte45.png" /></td><td>sarkanrīklīte</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_silastrazds46.png" /></td><td>sila strazds</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_svīre47.png" /></td><td>svīre</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_upeszīriņš48.png" /></td><td>upes zīriņš</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_vālodze49.png" /></td><td>vālodze</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_vidējaisdzenis50.png" /></td><td>vidējais dzenis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_zaļžubīte51.png" /></td><td>zaļžubīte</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_ziemeļugulbis52.png" /></td><td>ziemeļu gulbis</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_zilzīlīte53.png" /></td><td>zilzīlīte</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_žagata54.png" /></td><td>žagata</td></tr><tr><td style="text-align: center;"><img src="legend/Sugunovrojumi_8_žubīte55.png" /></td><td>žubīte</td></tr></table>': layer_Sugunovrojumi_8,'Sugu atradnes*<br /><table><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_īssetasnekera0.png" /></td><td>īssetas nekera</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_tievāgludlape1.png" /></td><td>tievā gludlape</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_gadastaipeknis2.png" /></td><td>gada staipeknis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_lielzieduuzpirkstīte3.png" /></td><td>lielziedu uzpirkstīte</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_pundurbērzs4.png" /></td><td>pundurbērzs</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_sīkālēpe5.png" /></td><td>sīkā lēpe</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_ūdensērkšķuzāle6.png" /></td><td>ūdens ērkšķuzāle</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_vālīšustaipeknis7.png" /></td><td>vālīšu staipeknis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_zemaisbērzs8.png" /></td><td>zemais bērzs</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_akmeņgrauzis9.png" /></td><td>akmeņgrauzis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_baltaisstārķis10.png" /></td><td>baltais stārķis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_grieze11.png" /></td><td>grieze</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_lielaisķīris12.png" /></td><td>lielais ķīris</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_tītiņš13.png" /></td><td>tītiņš</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_vidējaisdzenis14.png" /></td><td>vidējais dzenis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_upeszīriņš15.png" /></td><td>upes zīriņš</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_melnaisstārķis16.png" /></td><td>melnais stārķis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_lielāgaura17.png" /></td><td>lielā gaura</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_lielaisdumpis18.png" /></td><td>lielais dumpis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_divkrāsainaissikspārnis19.png" /></td><td>divkrāsainais sikspārnis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_dīķanaktssikspārnis20.png" /></td><td>dīķa naktssikspārnis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_Eirāzijasūdrs21.png" /></td><td>Eirāzijas ūdrs</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_Natūzasikspārnis22.png" /></td><td>Natūza sikspārnis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_pigmejsikspārnis23.png" /></td><td>pigmejsikspārnis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_rūsganaisvakarsikspārnis24.png" /></td><td>rūsganais vakarsikspārnis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_ziemeļusikspārnis25.png" /></td><td>ziemeļu sikspārnis</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_7_ūdeņunaktssikspārnis26.png" /></td><td>ūdeņu naktssikspārnis</td></tr></table>': layer_Suguatradnes_7,'Sugu atradnes<br /><table><tr><td style="text-align: center;"><img src="legend/Suguatradnes_6_Mazālēpe0.png" /></td><td>Mazā lēpe</td></tr><tr><td style="text-align: center;"><img src="legend/Suguatradnes_6_Ūdensērkšķuzāle1.png" /></td><td>Ūdens ērkšķuzāle</td></tr></table>': layer_Suguatradnes_6,'Aizsargājamie koki<br /><table><tr><td style="text-align: center;"><img src="legend/Aizsargjamiekoki_5_Valstsnozīmes0.png" /></td><td>Valsts nozīmes</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiekoki_5_Vietējāsnozīmes1.png" /></td><td>Vietējās nozīmes</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiekoki_5_Potenciāls2.png" /></td><td>Potenciāls</td></tr></table>': layer_Aizsargjamiekoki_5,'<img src="legend/Aizsargjamakokadikokateritorija_4.png" /> Aizsargājama koka (dižkoka) teritorija': layer_Aizsargjamakokadikokateritorija_4,'Aizsargājamie biotopi*<br /><table><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Eitrofiezeriariegrimušoūdensauguunpeldauguaugāju31500.png" /></td><td>Eitrofi ezeri ar iegrimušo ūdensaugu un peldaugu augāju (3150)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Sausizālājikaļķaināsaugsnēs62101.png" /></td><td>Sausi zālāji kaļķainās augsnēs (6210)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Sugāmbagātasganībasunganītaspļavas62702.png" /></td><td>Sugām bagātas ganības un ganītas pļavas (6270*)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Palieņuzālāji64503.png" /></td><td>Palieņu zālāji (6450)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Mērenimitraspļavas65104.png" /></td><td>Mēreni mitras pļavas (6510)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Degradētiaugstiepurvikurosiespējamavainorisdabiskāatjaunošanās71205.png" /></td><td>Degradēti augstie purvi, kuros iespējama vai noris dabiskā atjaunošanās (7120)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Pārejaspurviunslīkšņas71406.png" /></td><td>Pārejas purvi un slīkšņas (7140)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Minerālvielāmbagātiavotiunavotupurvi71607.png" /></td><td>Minerālvielām bagāti avoti un avotu purvi (7160)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Lakstaugiembagātiegļumeži90508.png" /></td><td>Lakstaugiem bagāti egļu meži (9050)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Nogāžuungravumeži91809.png" /></td><td>Nogāžu un gravu meži (9180*)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Ozolumežiozoluliepuunskābaržumeži916010.png" /></td><td>Ozolu meži (ozolu, liepu un skābaržu meži) (9160)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Purvainimeži91D011.png" /></td><td>Purvaini meži (91D0*)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Staignājumeži908012.png" /></td><td>Staignāju meži (9080*)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Vecijauktiplatlapjumeži902013.png" /></td><td>Veci jaukti platlapju meži (9020*)</td></tr><tr><td style="text-align: center;"><img src="legend/Aizsargjamiebiotopi_3_Vecivaidabiskiboreālimeži901014.png" /></td><td>Veci vai dabiski boreāli meži (9010*)</td></tr></table>': layer_Aizsargjamiebiotopi_3,"Ortofoto karte": layer_Ortofotokarte_2,"Digitāls reljefa modelis": layer_Digitlsreljefamodelis_1,"Topogrāfiskā karte M1:10 000 ar reljefa ēnojumu": layer_TopogrfiskkarteM110000arreljefanojumu_0,}).addTo(map);L.control.scale({position: 'bottomleft', maxWidth: 100, metric: true, imperial: false, updateWhenIdle: false}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
